@@ -17,7 +17,7 @@ class CreateOptionsTable extends Migration
             $table->increments('id');
             $table->integer('hotel_id');
             $table->integer('floor');
-            $table->boolean('available');
+            $table->boolean('available')->default(1);
             $table->timestamps();
         });
     }

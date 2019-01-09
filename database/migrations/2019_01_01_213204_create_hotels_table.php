@@ -17,7 +17,7 @@ class CreateHotelsTable extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->integer('stars');
-            $table->integer('reviews');
+            $table->integer('reviews')->nullable();
             $table->string('image', 100)->default('d6.jpg');
             $table->integer('price');
             $table->boolean('condition');

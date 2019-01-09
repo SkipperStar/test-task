@@ -32,44 +32,7 @@
 </head>
 <body>
 <header id="header">
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-sm-6 col-6 header-top-left">
-                    <ul>
-                        <li><a href="#">Visit Us</a></li>
-                        <li><a href="#">Buy Tickets</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 col-sm-6 col-6 header-top-right">
-                    <div class="header-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container main-menu">
-        <div class="row align-items-center justify-content-between d-flex">
-            <div id="logo">
-                <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-            </div>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li><a href="#">About</a></li>
-                    <li><a href="{{ route('hotelAdd') }}">Add Hotel</a></li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}">
-                            {{ __('Logout') }}
-                        </a>
-                    </li>
-                </ul>
-            </nav><!-- #nav-menu-container -->
-        </div>
-    </div>
+    @yield('header')
 </header><!-- #header -->
 
 <!-- start banner Area -->
@@ -90,110 +53,7 @@
 
 <!-- Start destinations Area -->
 <section class="destinations-area section-gap">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-40 col-lg-8">
-                <div class="title text-center">
-                    <h1 class="mb-10">Destinations</h1>
-                </div>
-            </div>
-        </div>
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-warning" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
-        <div class="row">
-            @if($hotels)
-                @forelse($hotels as $hotel)
-                    <div class="col-lg-4">
-                        <div class="single-destinations">
-                            <div class="thumb">
-                                <img src="{{ asset('img/hotels/'.$hotel->image) }}" alt="{{ $hotel->name }}">
-                            </div>
-                            <div class="details">
-                                <h4 class="d-flex justify-content-between">
-                                    <span>{{ $hotel->name }}</span>
-                                    <div class="star">
-                                        @for($i = 0; $i < $hotel->stars; $i++)
-                                            <span class="fa fa-star checked"></span>
-                                        @endfor
-                                    </div>
-                                </h4>
-                                <p>
-                                    View on map   |   {{ $hotel->reviews}} Reviews
-                                </p>
-                                <form action="{{ route('reserve') }}" method="post">
-                                    @csrf
-                                    <ul class="package-list">
-                                        <li class="d-flex justify-content-between align-items-center">
-                                            <span>Wi-fi</span>
-                                            @if($hotel->wifi)
-                                                <span>Yes</span>
-                                            @else
-                                                <span>No</span>
-                                            @endif
-                                        </li>
-                                        <li class="d-flex justify-content-between align-items-center">
-                                            <span>Room Service</span>
-                                            @if($hotel->service)
-                                                <span>Yes</span>
-                                            @else
-                                                <span>No</span>
-                                            @endif
-                                        </li>
-                                        <li class="d-flex justify-content-between align-items-center">
-                                            <span>Air Condition</span>
-                                            @if($hotel->condition)
-                                                <span>Yes</span>
-                                            @else
-                                                <span>No</span>
-                                            @endif
-                                        </li>
-                                        <li class="d-flex justify-content-between align-items-center">
-                                            <span>Restaurant</span>
-                                            @if($hotel->restaurant)
-                                                <span>Yes</span>
-                                            @else
-                                                <span>No</span>
-                                            @endif
-                                        </li>
-                                        <li class="d-flex justify-content-between align-items-center">
-                                            <span>Floor</span>
-                                            <span>
-                                                <select name="floor" id="floor">
-                                                    @foreach($hotel->options as $k=>$option)
-                                                        <option value="{{ $option['id'] }}">{{$option['floor']}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </span>
-                                        </li>
-                                        <li class="d-flex justify-content-between align-items-center">
-                                            <span>Price per night</span>
-                                            <a href="#" class="price-btn">${{ $hotel->price }}</a>
-                                        </li>
-                                    </ul>
-                                    @if($hotel->available)
-                                    <button type="submit" class="btn btn-outline-warning">Reserve</button>
-                                        @else
-                                    <button type="submit" class="btn btn-outline-warning" disabled>Reserve</button>
-                                    @endif
-                                        <input type="hidden" name="hotel" value="{{ $hotel->id }}">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <h4>No one hotel</h4>
-                @endforelse
-            @endif
-        </div>
-    </div>
+    @yield('content')
 </section>
 <!-- End destinations Area -->
 
