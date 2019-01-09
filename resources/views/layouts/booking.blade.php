@@ -59,8 +59,8 @@
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="{{ route('hotelAdd') }}">Add Hotel</a></li>
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}">
                             {{ __('Logout') }}
